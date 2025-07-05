@@ -1,6 +1,6 @@
 # Directories
 .vs/
-binaries/
+bin/
 
 # Files
 *.user

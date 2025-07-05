@@ -1,8 +1,9 @@
 -- premake5.lua
 workspace "Parang"
-   architecture "x64"
+   platforms "x64"
+   architecture "x86_64"
    configurations { "Debug", "Release", "Dist" }
-   startproject "Sample"
+   startproject "Sandbox"
 
    -- Workspace-wide build options for MSVC
    filter "system:windows"
@@ -14,4 +15,4 @@ group "Parang"
 	include "Parang/Build-Core.lua"
 group ""
 
-include "Sample/Build-Sample.lua"
+include "Sandbox/Build-Sandbox.lua"

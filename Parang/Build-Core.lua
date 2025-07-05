@@ -1,22 +1,32 @@
 project "Core"
-   kind "StaticLib"
+   kind "WindowedApp" -- TODO: StaticLibrary
    language "C++"
-   cppdialect "C++20"
-   targetdir "Binaries/%{cfg.buildcfg}"
+   cppdialect "C++17"
+   targetdir "Bin/%{cfg.buildcfg}"
    staticruntime "off"
+   location "Core"
+   
+   -- NuGet 패키지 참조
+   nuget { "Microsoft.Direct3D.D3D12:1.616.1" }
 
-   files { "Source/**.h", "Source/**.cpp" }
+   -- PCH
+   pchheader "Pch.h"
+   pchsource "Core/Pch.cpp" 
+
+   files { "Core/**.h", "Core/**.cpp" }
 
    includedirs
    {
-      "Source"
+      "Core"
    }
 
-   targetdir ("../Binaries/" .. OutputDir .. "/%{prj.name}")
-   objdir ("../Binaries/Intermediates/" .. OutputDir .. "/%{prj.name}")
+   targetdir ("../Bin/" .. OutputDir .. "/%{prj.name}")
+   objdir ("../Bin/Intermediate/" .. OutputDir .. "/%{prj.name}")
 
    filter "system:windows"
        systemversion "latest"
+        local pkgroot = os.getenv("USERPROFILE") .. "/.nuget/packages/microsoft.direct3d.d3d12/1.616.1/build/native"
+        includedirs { pkgroot .. "/include" }
        defines { }
 
    filter "configurations:Debug"
