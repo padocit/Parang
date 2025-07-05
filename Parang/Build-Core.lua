@@ -13,11 +13,12 @@ project "Core"
    pchheader "Pch.h"
    pchsource "Core/Pch.cpp" 
 
-   files { "Core/**.h", "Core/**.cpp" }
+   files { "Core/**.h", "Core/**.cpp", "Resource/**.rc", "Resource/**" }
 
    includedirs
    {
-      "Core"
+      "Core",
+      "Resource"
    }
 
    targetdir ("../Bin/" .. OutputDir .. "/%{prj.name}")
